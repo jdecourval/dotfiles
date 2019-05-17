@@ -69,7 +69,19 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git dircycle docker osx tmux zsh-autosuggestions zsh-completions)
+case `uname` in
+  Darwin)
+    # commands for OS X go here
+    plugins=(git dircycle docker osx zsh-autosuggestions zsh-completions)
+  ;;
+  Linux)
+    # commands for Linux go here
+    plugins=(git dircycle docker zsh-autosuggestions zsh-completions)
+  ;;
+  FreeBSD)
+    # commands for FreeBSD go here
+  ;;
+esac
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,11 +132,13 @@ export LESSOPEN='|~/.lessfilter %s'
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-autoload bashcompinit
-bashcompinit
-
 function setcflags() {
     CFLAGS="$CFLAGS -pipe -Wall -Wextra -Wshadow -Wnull-dereference -Wmissing-include-dirs -Wuninitialized -Wstrict-overflow=5 -Wundef -Wcast-align -Wredundant-decls -pedantic"
     export CFLAGS
 }
+
 source $HOME/.zshrc_thispc
+
+autoload bashcompinit
+bashcompinit
+autoload -U compinit && compinit

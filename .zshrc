@@ -126,6 +126,7 @@ alias sshfs-fast='sshfs -o Ciphers=chacha20-poly1305@openssh.com -o direct_io,bi
 alias g++-asm='g++ -g -O0 -c -fverbose-asm -Wa,-adhln'
 alias diff='diff -t --tabsize=4 -W 250 -y --color=always'
 alias watch='watch -n 1'
+alias t='todo.sh'
 
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'

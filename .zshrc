@@ -87,6 +87,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+export HISTSIZE=20000
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

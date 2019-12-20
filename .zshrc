@@ -72,7 +72,7 @@ HIST_STAMPS="yyyy-mm-dd"
 case `uname` in
   Darwin)
     # commands for OS X go here
-    plugins=(git dircycle docker osx zsh-autosuggestions zsh-completions)
+    plugins=(git dircycle docker osx zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
   ;;
   Linux)
     # commands for Linux go here

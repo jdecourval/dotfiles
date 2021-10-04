@@ -10,10 +10,11 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $refreshbar exec python ~/.config/i3pystatus/refresh.py
+#set $refreshbar exec --no-startup-id python ~/.config/i3pystatus/refresh.py
 
 gaps inner 30
 gaps outer -10
+hide_edge_borders both
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -22,7 +23,8 @@ gaps outer -10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Mono 8
+font pango:FiraCode Nerd Font 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -35,7 +37,7 @@ font pango:DejaVu Sans Mono 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym Mod1+F4 kill
@@ -159,15 +161,18 @@ mode "resize" {
 
 #bindsym $mod+r mode "resize"
 
-bindsym $mod++e exec thunar
+bindsym $mod+e exec thunar
 
 # Multimedia Keys
 # increase volume
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +2%; $refreshbar 
+#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +2%; $refreshbar 
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +2%
 # decrease volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -2%; $refreshbar
+#bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -2%; $refreshbar
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -2%
 # mute volume
-bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle; $refreshbar
+#bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle; $refreshbar
+bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
 # pause / play / next / previous
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -179,9 +184,10 @@ bindsym XF86Tools exec sh ~/.config/i3/toggle-sink.sh
 # Make the currently focused window a scratchpad
 #bindsym F2 move scratchpad
 exec --no-startup-id alacritty --class quake --title quake
-for_window [title="quake"] move scratchpad #, move position 0 0, resize set 3840 2160;
+for_window [title="quake"] move scratchpad
+#, move position 0 0, resize set 3840 2160;
 #bindsym F2 [title="quake"] scratchpad show
-bindsym F2 exec ~/.config/i3/scratch.sh
+bindsym F2 exec --no-startup-id ~/.config/i3/scratch.sh
 
 # Show the first scratchpad window
 #bindsym $mod+minus scratchpad show
@@ -191,34 +197,77 @@ new_window none
 
 #exec --no-startup-id compton -CGb --backend glx --vsync opengl --glx-swap-method 2 --glx-use-gpushader4 --glx-no-stencil --glx-no-rebind-pixmap --no-fading-openclose --shadow-exclude 'argb && _NET_WM_OPAQUE_REGION@:c'
 # exec --no-startup-id compton -b
-exec --no-startup-id compton -b --backend glx --unredir-if-possible --config /dev/null
-#exec --no-startup-id feh --bg-scale /home/jerome/theme/wallpaper/uhd_landscape_abstract-wallpaper-3840x2160.jpg
+# Works but flicker sometimes
+# exec --no-startup-id picom --backend xr_glx_hybrid --config /dev/null --use-damage --glx-no-stencil --glx-no-rebind-pixmap --vsync --xrender-sync-fence
+exec --no-startup-id picom --experimental-backends --backend glx --config /dev/null --use-damage --glx-no-stencil --glx-no-rebind-pixmap --vsync --xrender-sync-fence --unredir-if-possible --unredir-if-possible-exclude 'name *?= "Firefox"'
 exec --no-startup-id feh --bg-scale /home/jerome/theme/wallpaper/new-york-buildings-city-night-minimalism-4e.png
 exec --no-startup-id numlockx
-exec --no-startup-id mpd
-exec --no-startup-id snapclient
+# exec --no-startup-id mpd
+# latency 21 with eq
+
 exec --no-startup-id nvidia-settings --load-config-only
-exec --no-startup-id seafile-applet
 exec --no-startup-id dunst
 exec --no-startup-id redshift-gtk
 exec --no-startup-id setxkbmap -option compose:menu
-exec --no-startup-id pulseeffects --gapplication-service
+exec --no-startup-id schedtool -R -p 10 -e pulseeffects --gapplication-service
+exec --no-startup-id /usr/lib/kdeconnectd
+exec --no-startup-id kdeconnect-indicator
 #
 for_window [title="opencv-show"] floating enable
+for_window [instance="origin.exe"] floating enable
+
+set $bg-color            #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676e7d
+set $urgent-bg-color     #e53935
+set $indicator-color     #a0a0a0
+
+# set window colors
+#                       border             background         text                 indicator
+client.focused          $bg-color          $bg-color          $text-color          $indicator-color
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $indicator-color
+client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          $indicator-color
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# bar {
+#         colors {
+#                 # background #33333388
+#                 separator          #666666
+#                 background         #222222
+#                 statusline         #dddddd
+#                 focused_workspace  #0088CC #0088CC #ffffff
+#                 active_workspace   #333333 #333333 #ffffff
+#                 inactive_workspace #333333 #333333 #888888
+#                 urgent_workspace   #2f343a #900000 #ffffff
+#         }
+#         #status_command i3status
+#         i3bar_command i3bar -t
+#         #status_command bumblebee-status -m disk:root disk:home load cpu memory date time pasink -p interval=2.5 time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/home root.path/ -t solarized
+#         status_command python ~/.config/i3pystatus/bar.py
+#                 position top
+#         #tray_output DP-4
+#         tray_padding 2
+# }
 bar {
-        colors {
-                #background #00000028
-                background #33333388
-                #background #33333399
-        }
-        #status_command i3status
-        i3bar_command i3bar -t
-        #status_command bumblebee-status -m disk:root disk:home load cpu memory date time pasink -p interval=2.5 time.format="%H:%M CW %V" date.format="%a, %b %d %Y" home.path=/home root.path/ -t solarized
-        status_command python ~/.config/i3pystatus/bar.py
-                position top
-        tray_output DP-4
-        tray_padding 2
+#    font pango:DejaVu Sans Mono, FontAwesome 12
+#    font pango:FiraCode Retina 8
+    font pango:FiraCode Nerd Font 8
+    position top
+    status_command i3status-rs ~/.config/i3status-rust/config.toml
+#         #tray_output DP-4
+    tray_padding 2
+    colors {
+        separator #666666
+#        background #222222
+        background #00223f
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
+ 

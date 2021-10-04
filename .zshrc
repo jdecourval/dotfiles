@@ -61,6 +61,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # see 'man strftime' for details.
 HIST_STAMPS="yyyy-mm-dd"
 
+setopt INC_APPEND_HISTORY_TIME
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -72,11 +74,11 @@ HIST_STAMPS="yyyy-mm-dd"
 case `uname` in
   Darwin)
     # commands for OS X go here
-    plugins=(git dircycle docker osx zsh-autosuggestions zsh-completions zsh-syntax-highlighting)
+    plugins=(git dircycle docker osx zsh-autosuggestions zsh-completions zsh-syntax-highlighting pip)
   ;;
   Linux)
     # commands for Linux go here
-    plugins=(git dircycle docker zsh-autosuggestions zsh-completions)
+    plugins=(git dircycle docker zsh-autosuggestions zsh-completions pip)
   ;;
   FreeBSD)
     # commands for FreeBSD go here
@@ -116,7 +118,14 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 export EDITOR="vim"
 
 alias ls='ls --color=auto'
-alias kreboot="sudo systemctl kexec"
+alias kreboot='sudo sh -c "kexec -l $(fd vmlinuz-linux\\d+-tkg-pds /boot | tail -n 1) --initrd=$(fd initramfs-linux\\d+-tkg-pds.img /boot | tail -n 1) --reuse-cmdline && \
+    killall Xorg ; \
+    rmmod nvidia_uvm ; \
+    rmmod nvidia_drm ; \
+    rmmod nvidia_modeset ; \
+    rmmod nvidia ; \
+    systemctl kexec
+    "'
 alias grep="grep --color=always"
 alias gzip='pigz'
 alias gunzip='unpigz'

@@ -81,7 +81,7 @@ setopt INC_APPEND_HISTORY_TIME
 case `uname` in
   Darwin)
     # commands for OS X go here
-    plugins=(git dircycle docker osx zsh-autosuggestions zsh-completions zsh-syntax-highlighting pip)
+    plugins=(git dircycle docker macos zsh-autosuggestions zsh-completions zsh-syntax-highlighting kubectl pip)
   ;;
   Linux)
     # commands for Linux go here
@@ -135,7 +135,6 @@ alias gzip='pigz'
 alias gunzip='unpigz'
 alias lua='luajit'
 alias aria='aria2c --max-connection-per-server=10 --min-split-size=1M -s 10'
-alias ping='ping -4'
 alias sshfs-fast='sshfs -o Ciphers=chacha20-poly1305@openssh.com -o direct_io,big_writes'
 alias g++-asm='g++ -g -O0 -c -fverbose-asm -Wa,-adhln'
 alias diff='diff -t --tabsize=4 -W 250 -y --color=always'
@@ -154,3 +153,4 @@ function setcflags() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

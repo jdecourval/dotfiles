@@ -14,3 +14,5 @@ export __GL_SYNC_TO_VBLANK=0
 export TODOTXT_CFG_FILE=$HOME/.config/todo.cfg
 
 source $HOME/.zprofile_thispc
+
+export HOMEBREW_NO_AUTO_UPDATE=1

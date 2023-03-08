@@ -50,7 +50,8 @@ bindsym Mod1+F4 kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # bindsym $mod+r bar hidden_state hide; exec --no-startup-id rofi -show drun
 #bindsym $mod+r bar hidden_state hide; exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i"
-bindsym $mod+r bar hidden_state hide; exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -f -fn 'monospace-8' -o 1.0 -h 30 -x 100 -w 2000 -nb '#333333'"
+bindsym $mod+r bar hidden_state hide; exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -f -fn 'monospace-7' -o 1.0 -h 30 -x 100 -w 1950 -nb '#1f1a1e'"
+#bindsym $mod+r bar hidden_state hide; exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -f -fn 'monospace-8' -o 1.0 -h 30 -x 100 -w 2000 -nb '#333333'"
 
 # change focus
 bindsym $mod+h focus left
@@ -195,29 +196,24 @@ bindsym F2 exec --no-startup-id ~/.config/i3/scratch.sh
 
 new_window none
 
-#exec --no-startup-id compton -CGb --backend glx --vsync opengl --glx-swap-method 2 --glx-use-gpushader4 --glx-no-stencil --glx-no-rebind-pixmap --no-fading-openclose --shadow-exclude 'argb && _NET_WM_OPAQUE_REGION@:c'
-# exec --no-startup-id compton -b
-# Works but flicker sometimes
-# exec --no-startup-id picom --backend xr_glx_hybrid --config /dev/null --use-damage --glx-no-stencil --glx-no-rebind-pixmap --vsync --xrender-sync-fence
-exec --no-startup-id picom --experimental-backends --backend glx --config /dev/null --use-damage --glx-no-stencil --glx-no-rebind-pixmap --vsync --xrender-sync-fence --unredir-if-possible --unredir-if-possible-exclude 'name *?= "Firefox"'
-exec --no-startup-id feh --bg-scale /home/jerome/theme/wallpaper/new-york-buildings-city-night-minimalism-4e.png
+exec --no-startup-id picom 
+exec --no-startup-id feh --bg-scale '/home/jerome/Documents/theme/wallpaper/james webb 2.png'
 exec --no-startup-id numlockx
-# exec --no-startup-id mpd
-# latency 21 with eq
-
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id dunst
 exec --no-startup-id redshift-gtk
 exec --no-startup-id setxkbmap -option compose:menu
-exec --no-startup-id schedtool -R -p 10 -e pulseeffects --gapplication-service
+#exec --no-startup-id schedtool -R -p 10 -e easyeffects --gapplication-service
 exec --no-startup-id /usr/lib/kdeconnectd
 exec --no-startup-id kdeconnect-indicator
 #
 for_window [title="opencv-show"] floating enable
 for_window [instance="origin.exe"] floating enable
 
-set $bg-color            #2f343f
-set $inactive-bg-color   #2f343f
+#set $bg-color            #2f343f
+#set $inactive-bg-color   #2f343f
+set $bg-color            #1f1a1e
+set $inactive-bg-color   #1f1a1e
 set $text-color          #f3f4f5
 set $inactive-text-color #676e7d
 set $urgent-bg-color     #e53935
@@ -261,10 +257,11 @@ bar {
     tray_padding 2
     colors {
         separator #666666
-#        background #222222
-        background #00223f
+        #background #00223f
+        background #1f1a1e
         statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
+        focused_workspace #3e343c #3e343c #ffffff
+        #focused_workspace #0088CC #0088CC #ffffff
         active_workspace #333333 #333333 #ffffff
         inactive_workspace #333333 #333333 #888888
         urgent_workspace #2f343a #900000 #ffffff

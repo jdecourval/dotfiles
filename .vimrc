@@ -37,3 +37,14 @@ set hlsearch            " highlight all matches
 " Line Shortcuts 
 nnoremap j gj
 nnoremap k gk
+
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction

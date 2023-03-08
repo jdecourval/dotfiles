@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -5,8 +12,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 #POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs command_execution_time time)
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv vcs)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs command_execution_time time)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -78,22 +85,28 @@ case `uname` in
   ;;
   Linux)
     # commands for Linux go here
-    plugins=(git dircycle docker zsh-autosuggestions zsh-completions pip)
+    plugins=(git dircycle zsh-autosuggestions zsh-completions pip)
   ;;
   FreeBSD)
     # commands for FreeBSD go here
   ;;
 esac
 
+zstyle ':omz:update' mode disabled
+
+source $HOME/.zshrc_thispc
+
 source $ZSH/oh-my-zsh.sh
+#source /usr/lib/prezto/init.zsh
 
 # User configuration
 
-export HISTSIZE=20000
+export HISTFILESIZE=10000000
+export HISTSIZE=100000
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_CA.UTF-8
+#export LANG=en_CA.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -114,18 +127,9 @@ export LANG=en_CA.UTF-8
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
-# Report CPU usage for commands running longer than 20s
 export EDITOR="vim"
 
 alias ls='ls --color=auto'
-alias kreboot='sudo sh -c "kexec -l $(fd vmlinuz-linux\\d+-tkg-pds /boot | tail -n 1) --initrd=$(fd initramfs-linux\\d+-tkg-pds.img /boot | tail -n 1) --reuse-cmdline && \
-    killall Xorg ; \
-    rmmod nvidia_uvm ; \
-    rmmod nvidia_drm ; \
-    rmmod nvidia_modeset ; \
-    rmmod nvidia ; \
-    systemctl kexec
-    "'
 alias grep="grep --color=always"
 alias gzip='pigz'
 alias gunzip='unpigz'
@@ -148,8 +152,5 @@ function setcflags() {
     export CFLAGS
 }
 
-source $HOME/.zshrc_thispc
-
-autoload bashcompinit
-bashcompinit
-autoload -U compinit && compinit
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

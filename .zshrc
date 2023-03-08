@@ -92,8 +92,6 @@ case `uname` in
   ;;
 esac
 
-zstyle ':omz:update' mode disabled
-
 source $HOME/.zshrc_thispc
 
 source $ZSH/oh-my-zsh.sh

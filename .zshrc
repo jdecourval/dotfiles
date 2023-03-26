@@ -81,11 +81,11 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 case `uname` in
   Darwin)
     # commands for OS X go here
-    plugins=(git dircycle docker macos zsh-autosuggestions zsh-completions zsh-syntax-highlighting kubectl pip)
+    plugins=(git dircycle docker macos zsh-autosuggestions zsh-completions zsh-syntax-highlighting kubectl pip sudo)
   ;;
   Linux)
     # commands for Linux go here
-    plugins=(git dircycle zsh-autosuggestions zsh-completions pip)
+    plugins=(git dircycle zsh-autosuggestions zsh-completions pip sudo zsh-interactive-cd fzf)
   ;;
   FreeBSD)
     # commands for FreeBSD go here

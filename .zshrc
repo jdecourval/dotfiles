@@ -78,14 +78,17 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# Don't add zsh-completions here.
+# https://github.com/zsh-users/zsh-completions/issues/603
 case `uname` in
   Darwin)
     # commands for OS X go here
-    plugins=(git dircycle docker macos zsh-autosuggestions zsh-completions zsh-syntax-highlighting kubectl pip sudo)
+    plugins=(git dircycle docker macos zsh-autosuggestions zsh-syntax-highlighting kubectl pip sudo)
   ;;
   Linux)
     # commands for Linux go here
-    plugins=(git dircycle zsh-autosuggestions zsh-completions pip sudo zsh-interactive-cd fzf)
+    plugins=(git dircycle zsh-autosuggestions pip sudo zsh-interactive-cd fzf)
   ;;
   FreeBSD)
     # commands for FreeBSD go here
@@ -132,7 +135,7 @@ alias grep="grep --color=always"
 alias gzip='pigz'
 alias gunzip='unpigz'
 alias lua='luajit'
-alias aria='aria2c --max-connection-per-server=10 --min-split-size=1M -s 10'
+alias aria='aria2c --max-connection-per-server=10 --min-split-size=10M -s 10'
 alias sshfs-fast='sshfs -o Ciphers=chacha20-poly1305@openssh.com -o direct_io,big_writes'
 alias g++-asm='g++ -g -O0 -c -fverbose-asm -Wa,-adhln'
 alias diff='diff -t --tabsize=4 -W 250 -y --color=always'

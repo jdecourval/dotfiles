@@ -84,7 +84,7 @@ ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 case `uname` in
   Darwin)
     # commands for OS X go here
-    plugins=(git dircycle docker macos zsh-autosuggestions zsh-syntax-highlighting kubectl pip sudo)
+    plugins=(git dircycle docker macos zsh-autosuggestions kubectl pip sudo)
   ;;
   Linux)
     # commands for Linux go here
@@ -141,6 +141,8 @@ alias g++-asm='g++ -g -O0 -c -fverbose-asm -Wa,-adhln'
 alias diff='diff -t --tabsize=4 -W 250 -y --color=always'
 alias watch='watch -n 1'
 alias t='todo.sh'
+
+alias fkill='kill -15 $(ps aux | fzf | awk "{print \$2}")'
 
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'

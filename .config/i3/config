@@ -134,6 +134,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+n exec obsidian
+
 bindsym Print exec xfce4-screenshooter
 
 # resize window (you can also use the mouse for that)
@@ -197,7 +199,7 @@ bindsym F2 exec --no-startup-id ~/.config/i3/scratch.sh
 new_window none
 
 exec --no-startup-id picom 
-exec --no-startup-id feh --bg-scale '/home/jerome/Documents/theme/wallpaper/james webb 2.png'
+exec --no-startup-id feh --bg-scale '/home/jerome/theme/wallpaper/STScI-01H44AVB69N1P8RAEJ12NW2RB2.png'
 exec --no-startup-id numlockx
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id dunst

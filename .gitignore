@@ -1,0 +1,10 @@
+/*
+!/.*
+/.*/
+!/.config/
+.python_history
+.steampath
+.steampid
+.zsh_history
+.bash_history
+

@@ -38,6 +38,7 @@ case `uname` in
   ;;
 esac
 
+export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump-$HOST"
 source $HOME/.zshrc_thispc
 source $ZSH/oh-my-zsh.sh
 
@@ -52,9 +53,6 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias ls='ls --color=auto'
 alias grep="grep --color=always"
-alias gzip='pigz'
-alias gunzip='unpigz'
-alias lua='luajit'
 alias aria='aria2c --max-connection-per-server=10 --min-split-size=10M -s 10'
 alias g++-asm='g++ -g -O0 -c -fverbose-asm -Wa,-adhln'
 alias diff='diff -t --tabsize=4 -W 250 -y --color=always'

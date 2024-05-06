@@ -2,6 +2,7 @@
 !/.*
 /.*/
 !/.config/
+*.local
 .python_history
 .steampath
 .steampid

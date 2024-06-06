@@ -38,6 +38,8 @@ case `uname` in
   ;;
 esac
 
+export PATH="$HOME/.local/bin:$PATH"
+
 export ZSH_COMPDUMP="${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump-$HOST"
 source $HOME/.zshrc_thispc
 source $ZSH/oh-my-zsh.sh

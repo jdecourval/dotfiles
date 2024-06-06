@@ -64,6 +64,7 @@ alias yubi='ykman oath accounts code --single "$(ykman oath accounts list | fzf)
 alias open='xdg-open'
 alias fkill='kill -15 $(ps ax | fzf | awk "{print \$1}")'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias wanip='curl ipinfo.io/ip'
 
 function setcflags() {
     CFLAGS="$CFLAGS -pipe -Wall -Wextra -Wshadow -Wnull-dereference -Wmissing-include-dirs -Wuninitialized -Wstrict-overflow=5 -Wundef -Wcast-align -Wredundant-decls -pedantic"

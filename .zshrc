@@ -62,7 +62,7 @@ alias watch='watch -n 1'
 alias t='todo.sh'
 alias yubi='ykman oath accounts code --single "$(ykman oath accounts list | fzf)" | wl-copy'
 alias open='xdg-open'
-alias fkill='kill -15 $(ps aux | fzf | awk "{print \$2}")'
+alias fkill='kill -15 $(ps ax | fzf | awk "{print \$1}")'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 function setcflags() {

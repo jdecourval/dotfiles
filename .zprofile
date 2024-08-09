@@ -2,6 +2,7 @@ export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 export XZ_OPT="--threads=0"
 export WINEESYNC=1
 export WINEFSYNC=1
+export PROTON_USE_WINESYNC=1
 export PBA_ENABLE=1
 export CMAKE_GENERATOR=Ninja
 #

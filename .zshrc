@@ -55,7 +55,7 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias ls='ls --color=auto'
 alias grep="grep --color=always"
-alias aria='aria2c --max-connection-per-server=10 --min-split-size=10M -s 10'
+alias aria='aria2c --max-connection-per-server=10 --min-split-size=10M -s 10 --bt-request-peer-speed-limit 100M'
 alias g++-asm='g++ -g -O0 -c -fverbose-asm -Wa,-adhln'
 alias diff='diff -t --tabsize=4 -W 250 -y --color=always'
 alias watch='watch -n 1'

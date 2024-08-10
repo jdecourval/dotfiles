@@ -5,6 +5,7 @@ export WINEFSYNC=1
 export PROTON_USE_WINESYNC=1
 export PBA_ENABLE=1
 export CMAKE_GENERATOR=Ninja
+export UV_USE_IO_URING=1
 #
 # https://github.com/wine-compholio/wine-staging/wiki/Environment-Variables
 export STAGING_SHARED_MEMORY=1

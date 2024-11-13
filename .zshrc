@@ -51,6 +51,8 @@ export EDITOR="vim"
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
 
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/input.rc"
+
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias ls='ls --color=auto'

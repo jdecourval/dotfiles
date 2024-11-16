@@ -29,3 +29,5 @@
 	required = true
 [rebase]
 	autoStash = true
+[alias]
+    pulldiff = log HEAD@{1}.. --stat

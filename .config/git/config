@@ -3,6 +3,7 @@
 	email = 7315817+jdecourval@users.noreply.github.com
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
 	autocrlf = input
 	pager = diff-so-fancy | less --tabs=4 -RFX
@@ -29,5 +30,24 @@
 	required = true
 [rebase]
 	autoStash = true
+	updateRefs = true
 [alias]
     pulldiff = log HEAD@{1}.. --stat
+[help]
+	autocorrect = prompt
+[rerere]
+	enabled = true
+	autoupdate = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicprefix = true
+	rename = true
+[merge]
+	conflictstyle = zdiff3

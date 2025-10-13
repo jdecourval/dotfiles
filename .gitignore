@@ -3,6 +3,7 @@
 /.*/
 !/.config/
 *.local
+!/.local/bin/
 .python_history
 .steampath
 .steampid
